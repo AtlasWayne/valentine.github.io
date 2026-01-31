@@ -13,8 +13,11 @@ img {
 }
 
 #valentineQuestion {
+  padding: 10px 20px
   font-size: 50px;
   margin-bottom: 10px;
+  background-color: #ffe3e1;
+  color: #e67373;
 }
 .answerButton {
   padding: 10px 20px;
