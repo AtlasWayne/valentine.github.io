@@ -38,3 +38,86 @@ body {
   border-radius: 12px;
   border: 2px solid #ffe3e1;
 }
+$length: 500;
+$height: 500;
+$numOfParticles: 50;
+$timing: 0.6s;
+
+@mixin create-path() {
+  $end-point-w: random($length) - ($length / 2);
+  $end-point-h: random($height) - ($height / 2);
+  $bezier-w: random($length) - ($length / 2);
+  $bezier-h: random($height) - ($height / 2);
+  offset-path: path(
+    "M 0, 0 " + 
+    "q #{$bezier-w}, #{$bezier-h}, #{$end-point-w}, #{$end-point-h} "
+  );
+}
+
+body {
+  background: #444;
+  font-size: 0.8em;
+  user-select: none;
+}
+
+main {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input {
+  display: none;
+}
+
+label {
+  color: #222;
+  background: #f4f4f4;
+  box-shadow: 0 0 1rem #222;
+  padding: .2rem .4rem;
+  cursor: pointer;
+  transition: box-shadow $timing ease-in-out;
+ 
+  &:hover, &:focus, &:active {
+    background: #eaeaea;
+  }
+  
+  :checked ~ & {
+    box-shadow: 0 0 1rem #f4f4f4;
+  }
+}
+
+.particle {
+  width: 10px;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  offset-distance: 0;
+  transition: offset-distance $timing cubic-bezier(0, 0.7, 0.3, 1);
+  z-index: -1;
+  
+  :hover ~ & {
+    offset-distance: 10%;
+  }
+  
+  :checked ~ & {
+    offset-distance: 100%;
+  }
+  
+  @for $i from 0 through $numOfParticles {
+    &:nth-of-type(#{$i}) {
+      @include create-path();
+      $col-amount: 500;
+      $col-red: random(min($col-amount, 255));
+      $col-amount: $col-amount - $col-red;
+      $col-green: random(min($col-amount, 255));
+      $col-amount: $col-amount - $col-green;
+      $col-blue: random(min($col-amount, 255));
+      background: rgb($col-red, $col-green, $col-blue);
+    }
+  }
+}
