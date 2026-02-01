@@ -6,8 +6,15 @@ body {
   color: #e8bcf0;
 }
 #thankyou {
+  padding: 10px 20px
   font-size: 50px;
+  margin: 10px;
   margin-bottom: 20px;
+  background-color: #ffe3e1;
+  color: #e67373;
+  border-radius: 12px;
+  border: 2px solid #ffe3e1;
+  box-shadow: 1px 1px 2px #ff9494;
 }
 .rizz {
   margin-bottom: 10 px;
