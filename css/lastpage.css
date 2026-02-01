@@ -12,6 +12,9 @@ body {
   margin-bottom: 20px;
   background-color: #ffe3e1;
   color: #e67373;
+  border-radius: 12px;
+  border: 2px solid #ffe3e1;
+  box-shadow: 1px 1px 2px #ff9494;
 }
 .rizz {
   margin-bottom: 10 px;
